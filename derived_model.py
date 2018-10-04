@@ -189,7 +189,7 @@ class DerivedModel:
                 # Take the exponential of log-softmax output to get corresponding probabilities
                 ps = torch.exp(output)
 
-                # Find class with the highst probability and compare with true label
+                # Find class with the highest probability and compare with true label
                 equality = (labels.data == ps.max(dim=1)[1])
                 
                 # Compute Accuracy by taking the mean 

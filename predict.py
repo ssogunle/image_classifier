@@ -52,7 +52,7 @@ def load_checkpoint(checkpoint_path, use_gpu):
 
 def predict(image_path, model, k=1, use_gpu=False):
     ''' Predict the class (or classes) of an image using a trained deep learning model. '''
-    
+
     #Pre-process Image 
     np_array = utils.process_image(image_path) # Load & Format PIL Image to Numpy Image Array
     tensor_input = torch.from_numpy(np_array) # Convert image_array to torch tensor input
@@ -157,6 +157,10 @@ def main():
     image_cat = str(image_path.split('/')[-2])
     flower_class = cat_to_name[image_cat]
     print("\nOriginal flower class: ", flower_class.title())
+
+    # Ensure lowest value for k
+    if k<1:
+        k = 1
 
     # Read and predict test image
     probs, classes = predict(image_path, dmodel, k, _use_gpu)
